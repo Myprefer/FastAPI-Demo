@@ -44,8 +44,8 @@ app.add_middleware(
 
 
 def confirm(username: str, password: str) -> bool:
-    sql = f'SELECT passwd FROM {table} WHERE username="{username}"'
-    cur.execute(sql)
+    sql = 'SELECT passwd FROM {} WHERE username=%s'.format(table)
+    cur.execute(sql, (username,))
     result: tuple = cur.fetchall()
 
     if len(result) == 0:
@@ -86,7 +86,6 @@ async def register(request: RegisterRequest):
     result = cur.fetchone()
     if re.match(r'^1[3456789]\d{9}$', username) and result[0] == 0:
         sql = f'insert into {table}(username,passwd) values("{username}","{password}")'
-        # sql = f'insert into userinfo(username,passwd) values("{username}","{password}")'
         cur.execute(sql)
         conn.commit()
         return {"message": "Register successful"}
