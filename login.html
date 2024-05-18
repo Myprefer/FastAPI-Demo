@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="style/login.css">
+</head>
+
+<body>
+
+<h1 class="textStyle">登录</h1>
+<form id="loginForm">
+    <label for="username">
+        <div class="textStyle">账号：</div>
+    </label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">
+        <div class="textStyle">密码：</div>
+    </label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">登录</button>
+    <a href="./register.html">没有账号?点击注册</a>
+    <script src="node_modules/crypto-js/crypto-js.js"></script>
+    <script src="script/login.js"></script>
+</form>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+#loginForm {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #6e6c6c;
+    border-radius: 5px;
+}
+
+#registerForm {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #6e6c6c;
+    border-radius: 5px;
+}
+
+input {
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #bfbcbc;
+    border-radius: 4px;
+}
+
+h1.textStyle {
+    text-align: center;
+}

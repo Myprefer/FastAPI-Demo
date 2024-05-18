@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="style/login.css">
+</head>
+
+<body>
+
+<script src="script/login.js"></script>
+<h1 class="textStyle">注册</h1>
+<form id="registerForm">
+    <label for="username">
+        <div class="textStyle">账号：</div>
+    </label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">
+        <div class="textStyle">密码：</div>
+    </label>
+    <input type="password" id="password" name="password" required>
+    <label for="confirmpassword">
+        <div class="textStyle">确认密码：</div>
+    </label>
+    <input type="password" id="confirmpassword" name="confirmpassword" required>
+    <button type="submit">登录</button>
+    <script src="node_modules/crypto-js/crypto-js.js"></script>
+    <script src="script/register.js"></script>
+    <a href="./login.html">已有账号?点击登录</a>
+</form>
+</body>
+</html>
