@@ -5,7 +5,7 @@
 
 ### 环境搭建
 
-- Python版本: 3.7
+- Python版本: 3.12
 ```angular2html
 pip install -r requirements.txt
 ```
