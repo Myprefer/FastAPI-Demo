@@ -80,13 +80,13 @@ async def login(request: LoginRequest):
 async def register(request: RegisterRequest):
     username = request.username
     password = request.password
-    sql = f'SELECT COUNT(*) FROM {table} WHERE username"{username}"'
+    sql = f'SELECT COUNT(*) FROM {table} WHERE username="{username}"'
     # sql = f'SELECT COUNT(*) FROM userinfo WHERE username"{username}"'
     cur.execute(sql)
     result = cur.fetchone()
     if re.match(r'^1[3456789]\d{9}$', username) and result[0] == 0:
         sql = f'insert into {table}(username,passwd) values("{username}","{password}")'
-        sql = f'-- insert into userinfo(username,passwd) values("{username}","{password}")'
+        # sql = f'insert into userinfo(username,passwd) values("{username}","{password}")'
         cur.execute(sql)
         conn.commit()
         return {"message": "Register successful"}
