@@ -30,7 +30,8 @@ database = config['database']
 
 app = FastAPI()
 # conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='root', database='login', charset='utf8mb4')
-conn = pymysql.connect(host=database['host'], port=database['port'], user=database['username'], password=database['password'], database=database['database_name'], charset='utf8mb4')
+conn = pymysql.connect(host=database['host'], port=database['port'], user=database['username'],
+                       password=database['password'], database=database['database_name'], charset='utf8mb4')
 table = database['table_name']
 cur = conn.cursor()
 
@@ -44,8 +45,8 @@ app.add_middleware(
 
 
 def confirm(username: str, password: str) -> bool:
-    sql = 'SELECT passwd FROM {} WHERE username=%s'.format(table)
-    cur.execute(sql, (username,))
+    sql = f"SELECT passwd FROM {table} WHERE username=%s"
+    cur.execute(sql, username)
     result: tuple = cur.fetchall()
 
     if len(result) == 0:
@@ -80,13 +81,12 @@ async def login(request: LoginRequest):
 async def register(request: RegisterRequest):
     username = request.username
     password = request.password
-    sql = f'SELECT COUNT(*) FROM {table} WHERE username="{username}"'
-    # sql = f'SELECT COUNT(*) FROM userinfo WHERE username"{username}"'
-    cur.execute(sql)
+    sql = f"SELECT COUNT(*) FROM {table} WHERE username=%s"
+    cur.execute(sql, username)
     result = cur.fetchone()
     if re.match(r'^1[3456789]\d{9}$', username) and result[0] == 0:
-        sql = f'insert into {table}(username,passwd) values("{username}","{password}")'
-        cur.execute(sql)
+        sql = f"INSERT INTO {table} (username, passwd) VALUES (%s, %s)"
+        cur.execute(sql, (username, password))
         conn.commit()
         return {"message": "Register successful"}
     else:
